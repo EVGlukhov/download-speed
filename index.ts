@@ -1,7 +1,7 @@
 const url = process.argv[2];
 
 if (!url) {
-  console.log("Укажи адрес");
+  console.log("Укажите адрес");
   process.exit(1);
 }
 
