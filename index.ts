@@ -5,4 +5,23 @@ if (!url) {
   process.exit(1);
 }
 
-console.log("Адрес", url);
+const REQUESTS_COUNT = 10;
+
+async function main() {
+  let totalDownloadedBytes = 0;
+  let totalTime = 0;
+
+  for (let i = 1; i <= 10; i++) {
+    const startedAt = performance.now();
+    const response = await fetch(url);
+
+    let downloadedBytes = 0;
+    if (response.body) {
+      for await (const chunk of response.body) {
+        downloadedBytes += chunk.byteLength;
+      }
+    }
+
+    totalTime += performance.now() - startedAt;
+  }
+}
